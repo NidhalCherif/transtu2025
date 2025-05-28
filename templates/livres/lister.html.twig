@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello LivresController!{% endblock %}
+
+{% block body %}
+<h1>Liste des Livres</h1>
+  <div class="d-flex justify-content-end">
+    <a href="{{ path("admin_livres_add") }}" class="btn btn-success">Ajout d'un nouveau livre</a>
+  </div>
+    <table class="table">
+        <tr>
+            <th>Identifiant</th>
+            <th>Titre</th>
+            <th>ISBN</th>
+            <th>Prix</th>
+            <th>Quantité</th>
+            <th colspan="3">Action</th>
+        </tr>
+        {% for livre in livres  %}
+            <tr>
+                <td>{{ livre.id }}</td>
+                <td>{{ livre.titre|capitalize}}</td>
+                <td>{{ livre.isbn }}</td>
+                <td>{{ livre.prix }}</td>
+                <td>{{ livre.qte }}</td>
+                <td><a href="{{ path('admin_livres_detail',{'id':livre.id}) }}">Voir détail...</a></td>
+                <td><a href="#">Editer</a></td>
+                <td><a href="{{ path('admin_livres_delete',{'id':livre.id}) }}">Supprimer</a></td>
+            </tr>
+
+        {% endfor %}
+    </table>
+
+
+
+{% endblock %}
